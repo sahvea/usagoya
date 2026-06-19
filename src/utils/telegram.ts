@@ -17,7 +17,7 @@ const cardLabel = (card: Card): string => {
   if (card.type === "breakfast") return "Завтрак";
   if (card.type === "lunch") return "Обед";
   if (card.type === "dinner") return "Ужин";
-  return card.name || "Special";
+  return card.name || "Особое";
 };
 
 const formatSide = (card: Card): string =>

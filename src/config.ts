@@ -4,7 +4,7 @@ export const CARD_META: Record<CardType, { label: string; icon: string }> = {
   breakfast: { label: "Завтрак", icon: "🌅" },
   lunch: { label: "Обед", icon: "☀️" },
   dinner: { label: "Ужин", icon: "🌙" },
-  special: { label: "Special", icon: "⭐" },
+  special: { label: "Особое", icon: "⭐" },
 };
 
 export const CARD_LIMITS: Record<CardType, number> = {
@@ -50,13 +50,13 @@ export const MEAL_CATEGORIES: MealCategoryDef[] = [
   { section: "Ужин", key: "dinner.pork", label: "Свинина" },
   { section: "Ужин", key: "dinner.fish", label: "Рыба" },
   { section: "Ужин", key: "dinner.side", label: "Гарниры" },
-  { section: "Special", key: "special.salads", label: "Салаты" },
-  { section: "Special", key: "special.appetizers", label: "Закуски" },
-  { section: "Special", key: "special.savory_pastry", label: "Выпечка" },
-  { section: "Special", key: "special.sweet_pastry", label: "Десерты" },
+  { section: "Особое", key: "special.salads", label: "Салаты" },
+  { section: "Особое", key: "special.appetizers", label: "Закуски" },
+  { section: "Особое", key: "special.savory_pastry", label: "Выпечка" },
+  { section: "Особое", key: "special.sweet_pastry", label: "Десерты" },
 ];
 
-export const MEAL_SECTIONS = ["Завтрак", "Обед", "Ужин", "Special"] as const;
+export const MEAL_SECTIONS = ["Завтрак", "Обед", "Ужин", "Особое"] as const;
 
 export const FILTER_CHIPS: Record<CardType, ChipDef[]> = {
   breakfast: [

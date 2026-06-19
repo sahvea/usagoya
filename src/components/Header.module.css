@@ -29,6 +29,22 @@
   color: var(--color-accent);
 }
 
+.donateBtn {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  padding: 4px 10px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 8px;
+  transition: color 0.12s, border-color 0.12s;
+  white-space: nowrap;
+}
+
+.donateBtn:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
 .settingsBtn {
   display: flex;
   align-items: center;
