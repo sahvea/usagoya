@@ -11,7 +11,7 @@ import { CARD_META, CARD_LIMITS, ALL_CARD_TYPES } from "./config";
 import { sendAll } from "./utils/telegram";
 import { Header } from "./components/Header";
 import { MealCard } from "./components/MealCard";
-import { TelegramSettings } from "./components/TelegramSettings";
+import { SettingsModal } from "./components/SettingsModal";
 import styles from "./App.module.css";
 
 const App = () => {
@@ -208,7 +208,7 @@ const App = () => {
       </div>
 
       {showSettings && (
-        <TelegramSettings
+        <SettingsModal
           config={state.telegramConfig}
           onSave={(config) => dispatch({ type: "SET_TELEGRAM", config })}
           onClose={() => setShowSettings(false)}

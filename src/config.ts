@@ -35,6 +35,29 @@ interface ChipDef {
   label: string;
 }
 
+interface MealCategoryDef {
+  section: string;
+  key: string;
+  label: string;
+}
+
+export const MEAL_CATEGORIES: MealCategoryDef[] = [
+  { section: "Завтрак", key: "breakfast.eggs", label: "Яйца" },
+  { section: "Завтрак", key: "breakfast.alternatives", label: "Альтернативы" },
+  { section: "Обед", key: "lunch.soups", label: "Супы" },
+  { section: "Ужин", key: "dinner.chicken", label: "Курица" },
+  { section: "Ужин", key: "dinner.beef", label: "Говядина" },
+  { section: "Ужин", key: "dinner.pork", label: "Свинина" },
+  { section: "Ужин", key: "dinner.fish", label: "Рыба" },
+  { section: "Ужин", key: "dinner.side", label: "Гарниры" },
+  { section: "Special", key: "special.salads", label: "Салаты" },
+  { section: "Special", key: "special.appetizers", label: "Закуски" },
+  { section: "Special", key: "special.savory_pastry", label: "Выпечка" },
+  { section: "Special", key: "special.sweet_pastry", label: "Десерты" },
+];
+
+export const MEAL_SECTIONS = ["Завтрак", "Обед", "Ужин", "Special"] as const;
+
 export const FILTER_CHIPS: Record<CardType, ChipDef[]> = {
   breakfast: [
     { key: "eggs", label: "яйца" },
