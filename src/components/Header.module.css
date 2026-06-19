@@ -75,6 +75,7 @@
   outline: none;
   transition: border-color 0.15s;
   min-width: 150px;
+  min-height: 40px;
 }
 
 .datePicker:focus {
@@ -96,6 +97,7 @@
   letter-spacing: 0.01em;
   min-width: 164px;
   white-space: nowrap;
+  min-height: 40px;
 }
 
 .generateBtn:hover:not(:disabled) {

@@ -1,32 +1,6 @@
 import type { FilterKey, CardType } from '../types';
+import { FILTER_CHIPS } from '../config';
 import styles from './FilterChips.module.css';
-
-interface ChipDef {
-  key: FilterKey;
-  label: string;
-}
-
-const CHIPS: Record<CardType, ChipDef[]> = {
-  breakfast: [
-    { key: 'eggs', label: 'яйца' },
-    { key: 'alternatives', label: 'альтернативы' },
-  ],
-  lunch: [
-    { key: 'soups', label: 'супы' },
-  ],
-  dinner: [
-    { key: 'chicken', label: 'курица' },
-    { key: 'beef', label: 'говядина' },
-    { key: 'pork', label: 'свинина' },
-    { key: 'fish', label: 'рыба' },
-  ],
-  special: [
-    { key: 'salads', label: 'салаты' },
-    { key: 'appetizers', label: 'закуски' },
-    { key: 'savory_pastry', label: 'выпечка несладкая' },
-    { key: 'sweet_pastry', label: 'выпечка сладкая' },
-  ],
-};
 
 interface Props {
   type: CardType;
@@ -36,7 +10,7 @@ interface Props {
 }
 
 export const FilterChips = ({ type, activeFilters, disabled, onToggle }: Props) => {
-  const chips = CHIPS[type];
+  const chips = FILTER_CHIPS[type];
 
   return (
     <div className={styles.row}>

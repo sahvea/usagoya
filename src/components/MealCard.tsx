@@ -1,18 +1,10 @@
 import type { Card, FilterKey } from '../types';
+import { CARD_META } from '../config';
 import { getAnimationPool } from '../utils/pick';
 import { FilterChips } from './FilterChips';
 import { SlotMachine } from './SlotMachine';
 import { CardActions } from './CardActions';
 import styles from './MealCard.module.css';
-
-const CARD_META: Record<string, { label: string; icon: string }> = {
-  breakfast: { label: 'Завтрак', icon: '🌅' },
-  lunch: { label: 'Обед', icon: '☀️' },
-  dinner: { label: 'Ужин', icon: '🌙' },
-  'special-1': { label: 'Special', icon: '⭐' },
-  'special-2': { label: 'Special', icon: '⭐' },
-  'special-3': { label: 'Special', icon: '⭐' },
-};
 
 interface Props {
   card: Card;
@@ -45,7 +37,7 @@ export const MealCard = ({
   onAnimDone,
   collapsed,
 }: Props) => {
-  const meta = CARD_META[card.id] ?? { label: 'Special' };
+  const meta = CARD_META[card.type];
   const isAnimating = card.animating;
   const pending = pendingResult?.id === card.id ? pendingResult.result : null;
   const animOptions = getAnimationPool(card.type, card.activeFilters);
