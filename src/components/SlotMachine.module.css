@@ -1,0 +1,77 @@
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+  border: 1.5px dashed var(--color-border);
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.empty:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  background: var(--color-accent-bg);
+}
+
+.empty:disabled {
+  cursor: default;
+}
+
+.emptyIcon {
+  font-size: 28px;
+  opacity: 0.3;
+  transition: opacity 0.15s;
+}
+
+.empty:hover:not(:disabled) .emptyIcon {
+  opacity: 0.6;
+}
+
+.tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 80px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 10px;
+  padding: 12px;
+  transition: border-color 0.3s ease;
+  position: relative;
+}
+
+.tileClickable {
+  cursor: pointer;
+  background: var(--color-card-bg);
+}
+
+.tileClickable:hover {
+  border-color: var(--color-accent);
+}
+
+.tileIcon {
+  position: absolute;
+  bottom: 6px;
+  right: 8px;
+  font-size: 14px;
+  opacity: 0.25;
+  transition: opacity 0.15s;
+  pointer-events: none;
+}
+
+.tileClickable:hover .tileIcon {
+  opacity: 0.6;
+}
+
+.text {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text);
+  text-align: center;
+  line-height: 1.4;
+  will-change: transform;
+}

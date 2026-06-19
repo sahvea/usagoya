@@ -1,0 +1,73 @@
+.card {
+  background: var(--color-card-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+  position: relative;
+}
+
+.card.confirmed {
+  border-color: var(--color-success-border);
+}
+
+.card.sent {
+  border-color: var(--color-border);
+  opacity: 0.75;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  flex: 1;
+}
+
+.removeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  padding: 2px 4px;
+  border-radius: 4px;
+  line-height: 1;
+  transition:
+    color 0.12s,
+    background 0.12s;
+}
+
+.removeBtn:hover {
+  color: var(--color-text);
+  background: var(--color-bg-hover);
+}
+
+.slot {
+  margin-bottom: 4px;
+}
+
+.side {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: var(--color-bg-secondary);
+  border-radius: 8px;
+}
+
+.sideLabel {
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
