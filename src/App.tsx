@@ -9,6 +9,7 @@ import {
 import type { Card, FilterKey } from "./types";
 import { CARD_META, CARD_LIMITS, ALL_CARD_TYPES } from "./config";
 import { sendAll } from "./utils/telegram";
+import { getAnimationPool } from "./utils/pick";
 import { Header } from "./components/Header";
 import { MealCard } from "./components/MealCard";
 import { SettingsModal } from "./components/SettingsModal";
@@ -43,15 +44,23 @@ const App = () => {
     const targets = state.cards.filter((c) => !c.confirmed);
     if (targets.length === 0) return;
 
+    const animatable = targets.filter(
+      (c) => getAnimationPool(c.type, c.activeFilters).length > 0,
+    );
+    if (animatable.length < targets.length) {
+      showError("В некоторых категориях нет блюд — добавьте их в настройках.");
+    }
+    if (animatable.length === 0) return;
+
     const newPending: Record<string, { main: string; side: string | null }> =
       {};
-    targets.forEach((c) => {
+    animatable.forEach((c) => {
       const result = pickForCard(c);
       newPending[c.id] = { main: result.main ?? "", side: result.side };
     });
 
     setPendingResults(newPending);
-    targets.forEach((c, i) => {
+    animatable.forEach((c, i) => {
       setTimeout(() => {
         dispatch({ type: "SET_ANIMATING", cardId: c.id, animating: true });
       }, i * 150);
@@ -75,6 +84,10 @@ const App = () => {
 
   const handleReroll = (card: Card) => {
     if (card.confirmed || card.sent || card.animating) return;
+    if (getAnimationPool(card.type, card.activeFilters).length === 0) {
+      showError("В этой категории нет блюд — добавьте их в настройках.");
+      return;
+    }
     const result = pickForCard(card);
     setPendingResults((prev) => ({
       ...prev,
