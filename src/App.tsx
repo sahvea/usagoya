@@ -153,6 +153,11 @@ const App = () => {
               onConfirm={(cardId) => dispatch({ type: 'CONFIRM', cardId })}
               onUnconfirm={(cardId) => dispatch({ type: 'UNCONFIRM', cardId })}
               onRemove={(cardId) => dispatch({ type: 'REMOVE_CARD', cardId })}
+              onRename={
+                card.type === 'special'
+                  ? (cardId, name) => dispatch({ type: 'RENAME_CARD', cardId, name })
+                  : undefined
+              }
               collapsed={collapsed}
               onAnimDone={handleAnimDone}
             />

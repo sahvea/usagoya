@@ -13,17 +13,17 @@ const cardEmoji = (type: Card["type"]): string => {
   return "⭐";
 };
 
-const cardLabel = (type: Card["type"]): string => {
-  if (type === "breakfast") return "Завтрак";
-  if (type === "lunch") return "Обед";
-  if (type === "dinner") return "Ужин";
-  return "Special";
+const cardLabel = (card: Card): string => {
+  if (card.type === "breakfast") return "Завтрак";
+  if (card.type === "lunch") return "Обед";
+  if (card.type === "dinner") return "Ужин";
+  return card.name || "Special";
 };
 
 const formatSingleMessage = (card: Card): string => {
   const line = card.result.main ?? "";
   const side = card.result.side ? ` + ${card.result.side}` : "";
-  return `${cardEmoji(card.type)} ${cardLabel(card.type)}: ${line}${side}`;
+  return `${cardEmoji(card.type)} ${cardLabel(card)}: ${line}${side}`;
 };
 
 const formatAllMessage = (cards: Card[], date: string): string => {
@@ -32,7 +32,7 @@ const formatAllMessage = (cards: Card[], date: string): string => {
     .filter((c) => c.result.main)
     .map((c) => {
       const side = c.result.side ? ` + ${c.result.side}` : "";
-      return `${cardEmoji(c.type)} ${cardLabel(c.type)}: ${c.result.main}${side}`;
+      return `${cardEmoji(c.type)} ${cardLabel(c)}: ${c.result.main}${side}`;
     });
   return header + "\n" + lines.join("\n");
 };

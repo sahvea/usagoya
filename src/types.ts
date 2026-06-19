@@ -15,6 +15,7 @@ export interface MealResult {
 export interface Card {
   id: string;
   type: CardType;
+  name?: string;
   activeFilters: FilterKey[];
   result: MealResult;
   excludedToday: string[];
@@ -47,5 +48,6 @@ export type AppAction =
   | { type: 'MARK_SENT'; cardId: string }
   | { type: 'ADD_CARD'; cardType: CardType }
   | { type: 'REMOVE_CARD'; cardId: string }
+  | { type: 'RENAME_CARD'; cardId: string; name: string }
   | { type: 'TOGGLE_NO_SIDE'; cardId: string }
   | { type: 'SET_TELEGRAM'; config: TelegramConfig };

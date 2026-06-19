@@ -35,6 +35,7 @@ export const Header = ({
       <div className={styles.controls}>
         <input
           type="date"
+          name="date"
           className={styles.datePicker}
           value={date}
           onChange={(e) => onDateChange(e.target.value)}

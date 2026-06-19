@@ -182,6 +182,15 @@ export const reducer = (state: AppState, action: AppAction): AppState => {
       return next;
     }
 
+    case "RENAME_CARD": {
+      const cards = state.cards.map((c) =>
+        c.id === action.cardId ? { ...c, name: action.name || undefined } : c,
+      );
+      const next = { ...state, cards };
+      saveCards(state.date, next.cards);
+      return next;
+    }
+
     case "TOGGLE_NO_SIDE": {
       const cards = state.cards.map((c) =>
         c.id === action.cardId

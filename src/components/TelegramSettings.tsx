@@ -55,7 +55,8 @@ export const TelegramSettings = ({ config, onSave, onClose }: Props) => {
           <label className={styles.label}>Bot Token</label>
           <input
             className={styles.input}
-            type="password"
+            type="text"
+            name="bot-token"
             placeholder="123456:ABC-DEF..."
             value={token}
             onChange={(e) => setToken(e.target.value)}
@@ -67,6 +68,7 @@ export const TelegramSettings = ({ config, onSave, onClose }: Props) => {
           <input
             className={styles.input}
             type="text"
+            name="chat-id"
             placeholder="-100123456789"
             value={chatId}
             onChange={(e) => setChatId(e.target.value)}
