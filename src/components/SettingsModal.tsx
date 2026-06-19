@@ -65,7 +65,7 @@ export const SettingsModal = ({ config, onSave, onClose }: Props) => {
   };
 
   return (
-    <div className={styles.overlay} onClick={onClose}>
+    <div className={styles.overlay} data-modal onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.modalHeader}>
           <h2 className={styles.title}>Настройки</h2>
