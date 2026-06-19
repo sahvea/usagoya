@@ -1,73 +1,47 @@
-# React + TypeScript + Vite
+# 🥕 Usagoya
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Генератор ежедневного меню. Открываешь, нажимаешь «Сгенерировать» — и завтрак, обед, ужин подобраны. Можно подтвердить понравившееся, переподобрать неподходящее и отправить меню в Telegram.
 
-Currently, two official plugins are available:
+**→ [sahvea.github.io/usagoya](https://sahvea.github.io/usagoya/)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Что умеет
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Генерация меню** — карточки Завтрак, Обед, Ужин и до трёх карточек Особое
+- **Фильтры** — выбрать категории блюд (яйца, курица, рыба и т.д.), и генерация будет только из них
+- **«Не в этот раз»** — блюдо исключается на выбранный день, генерируется другое
+- **Подтверждение** — подтверждённые карточки пропускаются при повторной генерации
+- **Гарнир к ужину** — отдельная кнопка «Сменить гарнир» или «Без гарнира»
+- **Особое** — карточка с настраиваемым названием для салатов, выпечки, десертов
+- **История по датам** — переключи дату, и меню за тот день восстановится
+- **Отправка в Telegram** — меню уходит одним сообщением в нужный чат или несколько
+- **Своё меню** — в настройках можно добавить, удалить или изменить любое блюдо
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Настройка Telegram
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. Создай бота через [@BotFather](https://t.me/BotFather), скопируй токен
+2. Узнай свой Chat ID у [@userinfobot](https://t.me/userinfobot)
+3. Открой ⚙ → вкладка Telegram → вставь токен и Chat ID
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+**Личный чат** — пользователь должен сначала написать боту любое сообщение.  
+**Группа** — добавь бота как участника.  
+**Канал** — добавь бота как администратора.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Можно добавить несколько Chat ID — меню придёт каждому.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Своё меню
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+В настройках ⚙ → вкладка Меню можно редактировать списки блюд по категориям. Изменения сохраняются в браузере. Кнопка «Сбросить к стандартным» возвращает исходные блюда.
+
+---
+
+## Стек
+
+- React 19 + TypeScript + Vite
+- CSS Modules, без UI-библиотек
+- Деплой на GitHub Pages через GitHub Actions
