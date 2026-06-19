@@ -50,7 +50,7 @@ export const FILTER_CHIPS: Record<CardType, ChipDef[]> = {
   special: [
     { key: "salads", label: "салаты" },
     { key: "appetizers", label: "закуски" },
-    { key: "savory_pastry", label: "выпечка несладкая" },
-    { key: "sweet_pastry", label: "выпечка сладкая" },
+    { key: "savory_pastry", label: "выпечка" },
+    { key: "sweet_pastry", label: "десерты" },
   ],
 };
