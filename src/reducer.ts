@@ -1,4 +1,5 @@
 import type { AppAction, AppState, Card, FilterKey, MealResult } from "./types";
+import { CARD_LIMITS, CARD_ORDER } from "./config";
 import {
   loadCards,
   loadTelegramConfig,
@@ -143,16 +144,23 @@ export const reducer = (state: AppState, action: AppAction): AppState => {
       return next;
     }
 
-    case "ADD_SPECIAL": {
-      const specials = state.cards.filter((c) => c.type === "special");
-      if (specials.length >= 3) return state;
-      const existingNums = specials.map((c) =>
-        parseInt(c.id.replace("special-", "")),
-      );
-      const num = [1, 2, 3].find((n) => !existingNums.includes(n)) ?? 1;
+    case "ADD_CARD": {
+      const { cardType } = action;
+      const existing = state.cards.filter((c) => c.type === cardType);
+      if (existing.length >= CARD_LIMITS[cardType]) return state;
+
+      let id: string;
+      if (cardType === "special") {
+        const nums = existing.map((c) => parseInt(c.id.replace("special-", "")));
+        const num = [1, 2, 3].find((n) => !nums.includes(n)) ?? 1;
+        id = `special-${num}`;
+      } else {
+        id = cardType;
+      }
+
       const newCard: Card = {
-        id: `special-${num}`,
-        type: "special",
+        id,
+        type: cardType,
         activeFilters: [],
         result: { main: null, side: null },
         excludedToday: [],
@@ -160,7 +168,11 @@ export const reducer = (state: AppState, action: AppAction): AppState => {
         sent: false,
         animating: false,
       };
-      return { ...state, cards: [...state.cards, newCard] };
+
+      const cards = [...state.cards, newCard].sort(
+        (a, b) => (CARD_ORDER[a.id] ?? 9) - (CARD_ORDER[b.id] ?? 9),
+      );
+      return { ...state, cards };
     }
 
     case "REMOVE_CARD": {

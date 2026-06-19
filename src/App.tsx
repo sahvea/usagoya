@@ -1,6 +1,7 @@
 import { useReducer, useState, useCallback } from 'react';
 import { reducer, makeInitialState, pickForCard, excludeAndPick, pickNewSide } from './reducer';
 import type { Card, FilterKey } from './types';
+import { CARD_META, CARD_LIMITS, ALL_CARD_TYPES } from './config';
 import { sendAll } from './utils/telegram';
 import { Header } from './components/Header';
 import { MealCard } from './components/MealCard';
@@ -112,7 +113,9 @@ const App = () => {
     }
   };
 
-  const specialCount = state.cards.filter((c) => c.type === 'special').length;
+  const availableTypes = ALL_CARD_TYPES.filter(
+    (t) => state.cards.filter((c) => c.type === t).length < CARD_LIMITS[t]
+  );
 
   return (
     <div className={styles.page}>
@@ -149,25 +152,26 @@ const App = () => {
               onToggleNoSide={handleToggleNoSide}
               onConfirm={(cardId) => dispatch({ type: 'CONFIRM', cardId })}
               onUnconfirm={(cardId) => dispatch({ type: 'UNCONFIRM', cardId })}
-              onRemove={
-                card.type === 'special'
-                  ? (cardId) => dispatch({ type: 'REMOVE_CARD', cardId })
-                  : undefined
-              }
+              onRemove={(cardId) => dispatch({ type: 'REMOVE_CARD', cardId })}
               collapsed={collapsed}
               onAnimDone={handleAnimDone}
             />
           ))}
 
-          {specialCount < 3 && (
-            <button
-              className={styles.addSpecial}
-              onClick={() => dispatch({ type: 'ADD_SPECIAL' })}
-              disabled={anyAnimating}
-            >
-              <span className={styles.addIcon}>+</span>
-              <span>Добавить special</span>
-            </button>
+          {availableTypes.length > 0 && (
+            <div className={styles.addArea}>
+              {availableTypes.map((t) => (
+                <button
+                  key={t}
+                  className={styles.addTypeBtn}
+                  onClick={() => dispatch({ type: 'ADD_CARD', cardType: t })}
+                  disabled={anyAnimating}
+                >
+                  <span>{CARD_META[t].icon}</span>
+                  <span>+ {CARD_META[t].label}</span>
+                </button>
+              ))}
+            </div>
           )}
         </div>
 

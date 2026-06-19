@@ -45,7 +45,7 @@ export type AppAction =
   | { type: 'CONFIRM'; cardId: string }
   | { type: 'UNCONFIRM'; cardId: string }
   | { type: 'MARK_SENT'; cardId: string }
-  | { type: 'ADD_SPECIAL' }
+  | { type: 'ADD_CARD'; cardType: CardType }
   | { type: 'REMOVE_CARD'; cardId: string }
   | { type: 'TOGGLE_NO_SIDE'; cardId: string }
   | { type: 'SET_TELEGRAM'; config: TelegramConfig };
