@@ -210,7 +210,6 @@
   background: none;
   cursor: pointer;
   color: var(--color-text-muted);
-  flex-shrink: 0;
   transition:
     color 0.12s,
     border-color 0.12s;
@@ -219,6 +218,10 @@
 .delBtn:hover {
   color: var(--color-text);
   border-color: var(--color-text-muted);
+}
+
+.delBtn svg {
+  display: block;
 }
 
 .addBtn {
