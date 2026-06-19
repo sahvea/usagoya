@@ -1,0 +1,185 @@
+.header {
+  padding: 20px 0 24px;
+  border-bottom: 1px solid var(--color-border-light);
+  margin-bottom: 24px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.name {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-accent);
+}
+
+.settingsBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 10px;
+  font-size: 24px;
+  line-height: 1;
+  background: var(--color-card-bg);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    color 0.12s;
+  margin-left: auto;
+  padding-bottom: 4px;
+}
+
+.settingsBtn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rightBtns {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.collapseBtn {
+  font-size: 0;
+  padding-bottom: 0;
+}
+
+.datePicker {
+  padding: 9px 12px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 10px;
+  font-size: 14px;
+  background: var(--color-card-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s;
+  min-width: 150px;
+}
+
+.datePicker:focus {
+  border-color: var(--color-accent);
+}
+
+.generateBtn {
+  padding: 10px 16px;
+  border: 1.5px solid transparent;
+  border-radius: 10px;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    opacity 0.15s,
+    transform 0.1s;
+  letter-spacing: 0.01em;
+  min-width: 164px;
+  white-space: nowrap;
+}
+
+.generateBtn:hover:not(:disabled) {
+  opacity: 0.88;
+}
+
+.generateBtn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.generateBtn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.generateBtn.generating {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.sendAllBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border: 1.5px solid var(--color-accent-border);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--color-accent);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.sendAllBtn:hover:not(:disabled) {
+  background: var(--color-accent-bg);
+}
+
+.sendAllBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+@media (max-width: 480px) {
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  .datePicker {
+    flex: 0 0 auto;
+  }
+  .rightBtns {
+    order: 1;
+    margin-left: auto;
+    gap: 10px;
+  }
+  .generateBtn {
+    order: 10;
+    flex: 1 0 100%;
+    min-width: 0;
+  }
+  .sendAllBtn {
+    order: 11;
+    flex: 1 0 100%;
+    min-width: 0;
+    justify-content: center;
+  }
+}

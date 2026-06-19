@@ -1,0 +1,68 @@
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+  text-align: left;
+  width: 100%;
+}
+
+.btn:hover:not(:disabled):not(.confirm):not(.confirmed) {
+  background: var(--color-bg-hover);
+  color: var(--color-text);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.icon {
+  font-size: 13px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.confirm {
+  color: var(--color-success);
+  border-color: var(--color-success-border);
+}
+
+.confirm:hover:not(:disabled) {
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.confirmed {
+  color: var(--color-success);
+  border-color: var(--color-success-border);
+  background: var(--color-success-bg);
+}
+
+.confirmed:hover:not(:disabled) {
+  background: rgba(45, 155, 78, 0.16);
+  border-color: var(--color-success);
+}
+
+
+.noSideActive {
+  color: var(--color-text);
+  border-color: var(--color-border);
+  background: var(--color-bg-hover);
+}
