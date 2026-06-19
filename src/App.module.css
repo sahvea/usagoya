@@ -36,7 +36,9 @@
   color: var(--color-text-muted);
   cursor: pointer;
   font-size: 14px;
-  transition: border-color 0.12s, color 0.12s;
+  transition:
+    border-color 0.12s,
+    color 0.12s;
   width: 100%;
   text-align: left;
 }
@@ -51,7 +53,7 @@
   cursor: default;
 }
 
-.error {
+.alert {
   position: fixed;
   top: 16px;
   left: 50%;
@@ -65,6 +67,14 @@
   text-align: center;
   z-index: 200;
   animation: slideUp 0.2s ease;
+}
+
+.error {
+  background: #d93025;
+}
+
+.success {
+  background: var(--color-success-border);
 }
 
 @keyframes slideUp {
