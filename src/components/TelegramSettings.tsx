@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import type { TelegramConfig } from '../types';
-import styles from './TelegramSettings.module.css';
+import { useState } from "react";
+import type { TelegramConfig } from "../types";
+import styles from "./TelegramSettings.module.css";
 
 interface Props {
   config: TelegramConfig;
@@ -22,10 +22,34 @@ export const TelegramSettings = ({ config, onSave, onClose }: Props) => {
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
           <h2 className={styles.title}>Telegram</h2>
-          <button className={styles.close} onClick={onClose} aria-label="Закрыть">✕</button>
+          <button
+            className={styles.close}
+            onClick={onClose}
+            aria-label="Закрыть"
+          >
+            ✕
+          </button>
         </div>
         <p className={styles.hint}>
-          Создай бота через <a href="https://t.me/BotFather" target="_blank" rel="noreferrer" className={styles.link}>@BotFather</a>, получи токен и Chat ID.
+          Создайте бота через{" "}
+          <a
+            href="https://t.me/BotFather"
+            target="_blank"
+            rel="noreferrer"
+            className={styles.link}
+          >
+            @BotFather
+          </a>
+          , получите токен. Chat ID можно узнать у{" "}
+          <a
+            href="https://t.me/userinfobot"
+            target="_blank"
+            rel="noreferrer"
+            className={styles.link}
+          >
+            @userinfobot
+          </a>
+          .
         </p>
         <div className={styles.field}>
           <label className={styles.label}>Bot Token</label>
@@ -50,8 +74,12 @@ export const TelegramSettings = ({ config, onSave, onClose }: Props) => {
           />
         </div>
         <div className={styles.footer}>
-          <button className={styles.cancel} onClick={onClose}>Отмена</button>
-          <button className={styles.save} onClick={handleSave}>Сохранить</button>
+          <button className={styles.cancel} onClick={onClose}>
+            Отмена
+          </button>
+          <button className={styles.save} onClick={handleSave}>
+            Сохранить
+          </button>
         </div>
       </div>
     </div>
