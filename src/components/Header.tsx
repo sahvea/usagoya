@@ -56,7 +56,18 @@ export const Header = ({
           onClick={onGenerate}
           disabled={generating}
         >
-          {generating ? "Генерирую..." : "✦ Сгенерировать"}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+            style={{ flexShrink: 0 }}
+          >
+            <path d="M12 2 L13.9 10.1 L22 12 L13.9 13.9 L12 22 L10.1 13.9 L2 12 L10.1 10.1 Z" />
+          </svg>
+          {generating ? "Генерирую..." : "Сгенерировать"}
         </button>
         {hasResults && (
           <button

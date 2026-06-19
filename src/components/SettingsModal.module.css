@@ -37,9 +37,9 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 16px;
+  display: flex;
   color: var(--color-text-muted);
-  padding: 4px 6px;
+  padding: 2px;
   border-radius: 6px;
   transition:
     color 0.12s,
@@ -250,6 +250,7 @@
   display: flex;
   gap: 8px;
   align-items: center;
+  justify-content: flex-end;
   flex-shrink: 0;
 }
 
