@@ -31,7 +31,8 @@ const formatAllMessage = (cards: Card[], date: string): string => {
       (c) =>
         `${cardEmoji(c.type)} ${cardLabel(c)}: ${c.result.main}${formatSide(c)}`,
     );
-  return header + "\n" + lines.join("\n");
+  const footer = `\n\nСгенерировано в <a href="https://sahvea.github.io/usagoya/">Usagoya</a>`;
+  return header + "\n" + lines.join("\n") + footer;
 };
 
 const send = async (config: TelegramConfig, text: string): Promise<void> => {
@@ -49,6 +50,7 @@ const send = async (config: TelegramConfig, text: string): Promise<void> => {
         chat_id: config.chatId,
         text,
         parse_mode: "HTML",
+        link_preview_options: { is_disabled: true },
       }),
     },
   );
