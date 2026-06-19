@@ -20,20 +20,17 @@ const cardLabel = (card: Card): string => {
   return card.name || "Special";
 };
 
-const formatSingleMessage = (card: Card): string => {
-  const line = card.result.main ?? "";
-  const side = card.result.side ? ` + ${card.result.side}` : "";
-  return `${cardEmoji(card.type)} ${cardLabel(card)}: ${line}${side}`;
-};
+const formatSide = (card: Card): string =>
+  !card.result.noSide && card.result.side ? ` + ${card.result.side}` : "";
 
 const formatAllMessage = (cards: Card[], date: string): string => {
   const header = `🗓 Меню на ${formatDate(date)}\n`;
   const lines = cards
     .filter((c) => c.result.main)
-    .map((c) => {
-      const side = c.result.side ? ` + ${c.result.side}` : "";
-      return `${cardEmoji(c.type)} ${cardLabel(c)}: ${c.result.main}${side}`;
-    });
+    .map(
+      (c) =>
+        `${cardEmoji(c.type)} ${cardLabel(c)}: ${c.result.main}${formatSide(c)}`,
+    );
   return header + "\n" + lines.join("\n");
 };
 
@@ -61,13 +58,6 @@ const send = async (config: TelegramConfig, text: string): Promise<void> => {
       (err as { description?: string }).description ?? "Ошибка отправки",
     );
   }
-};
-
-export const sendCard = async (
-  card: Card,
-  config: TelegramConfig,
-): Promise<void> => {
-  await send(config, formatSingleMessage(card));
 };
 
 export const sendAll = async (
