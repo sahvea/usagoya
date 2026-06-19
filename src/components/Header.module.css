@@ -37,16 +37,14 @@
   height: 40px;
   border: 1.5px solid var(--color-border);
   border-radius: 10px;
-  font-size: 24px;
-  line-height: 1;
   background: var(--color-card-bg);
   color: var(--color-text-muted);
   cursor: pointer;
   transition:
     border-color 0.15s,
     color 0.12s;
+  font-size: 0;
   margin-left: auto;
-  padding-bottom: 4px;
 }
 
 .settingsBtn:hover {
@@ -64,11 +62,6 @@
   display: flex;
   gap: 8px;
   margin-left: auto;
-}
-
-.collapseBtn {
-  font-size: 0;
-  padding-bottom: 0;
 }
 
 .datePicker {
