@@ -18,7 +18,10 @@
   background: transparent;
   color: var(--color-text-muted);
   cursor: pointer;
-  transition: background 0.12s, color 0.12s, border-color 0.12s;
+  transition:
+    background 0.12s,
+    color 0.12s,
+    border-color 0.12s;
   text-align: left;
   width: 100%;
 }
@@ -35,7 +38,10 @@
 
 .icon {
   font-size: 13px;
-  flex-shrink: 0;
+  display: inline-flex;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
   opacity: 0.7;
 }
 
@@ -59,7 +65,6 @@
   background: rgba(45, 155, 78, 0.16);
   border-color: var(--color-success);
 }
-
 
 .noSideActive {
   color: var(--color-text);
