@@ -221,7 +221,9 @@
 }
 
 .delBtn svg {
-  display: block;
+  width: 12px;
+  min-width: 12px;
+  height: 12px;
 }
 
 .addBtn {
