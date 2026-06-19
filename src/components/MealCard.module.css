@@ -15,10 +15,6 @@
   border-color: var(--color-success-border);
 }
 
-.card.sent {
-  border-color: var(--color-border);
-  opacity: 0.75;
-}
 
 .header {
   display: flex;

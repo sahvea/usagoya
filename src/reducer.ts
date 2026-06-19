@@ -137,7 +137,7 @@ export const reducer = (state: AppState, action: AppAction): AppState => {
 
     case "MARK_SENT": {
       const cards = state.cards.map((c) =>
-        c.id === action.cardId ? { ...c, sent: true, confirmed: true } : c,
+        c.id === action.cardId ? { ...c, confirmed: true } : c,
       );
       const next = { ...state, cards };
       saveCards(state.date, next.cards);

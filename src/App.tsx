@@ -27,7 +27,7 @@ const App = () => {
 
   const handleGenerate = () => {
     if (anyAnimating) return;
-    const targets = state.cards.filter((c) => !c.confirmed && !c.sent);
+    const targets = state.cards.filter((c) => !c.confirmed);
     if (targets.length === 0) return;
 
     const newPending: Record<string, { main: string; side: string | null }> = {};

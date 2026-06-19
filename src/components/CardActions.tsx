@@ -26,37 +26,33 @@ export const CardActions = ({
 
   return (
     <div className={styles.actions}>
-      {!card.sent && (
+      <button className={styles.btn} onClick={onSkip} disabled={actionDisabled}>
+        <span className={styles.icon}>✕</span> Не в этот раз
+      </button>
+      {card.type === 'dinner' && (
         <>
-          <button className={styles.btn} onClick={onSkip} disabled={actionDisabled}>
-            <span className={styles.icon}>✕</span> Не в этот раз
+          {!noSide && (
+            <button className={styles.btn} onClick={onRerollSide} disabled={actionDisabled}>
+              <span className={styles.icon}>↔</span> Сменить гарнир
+            </button>
+          )}
+          <button
+            className={`${styles.btn} ${noSide ? styles.noSideActive : ''}`}
+            onClick={onToggleNoSide}
+            disabled={actionDisabled}
+          >
+            <span className={styles.icon}>{noSide ? '✓' : '○'}</span> Без гарнира
           </button>
-          {card.type === 'dinner' && (
-            <>
-              {!noSide && (
-                <button className={styles.btn} onClick={onRerollSide} disabled={actionDisabled}>
-                  <span className={styles.icon}>↔</span> Сменить гарнир
-                </button>
-              )}
-              <button
-                className={`${styles.btn} ${noSide ? styles.noSideActive : ''}`}
-                onClick={onToggleNoSide}
-                disabled={actionDisabled}
-              >
-                <span className={styles.icon}>{noSide ? '✓' : '○'}</span> Без гарнира
-              </button>
-            </>
-          )}
-          {card.confirmed ? (
-            <button className={`${styles.btn} ${styles.confirmed}`} onClick={onUnconfirm} disabled={animating}>
-              <span className={styles.icon}>✓</span> Подтверждено
-            </button>
-          ) : (
-            <button className={`${styles.btn} ${styles.confirm}`} onClick={onConfirm} disabled={animating}>
-              <span className={styles.icon}>✓</span> Подтвердить
-            </button>
-          )}
         </>
+      )}
+      {card.confirmed ? (
+        <button className={`${styles.btn} ${styles.confirmed}`} onClick={onUnconfirm} disabled={animating}>
+          <span className={styles.icon}>✓</span> Подтверждено
+        </button>
+      ) : (
+        <button className={`${styles.btn} ${styles.confirm}`} onClick={onConfirm} disabled={animating}>
+          <span className={styles.icon}>✓</span> Подтвердить
+        </button>
       )}
     </div>
   );

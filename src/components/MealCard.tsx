@@ -47,7 +47,7 @@ export const MealCard = ({
   const isAnimating = card.animating;
   const pending = pendingResult?.id === card.id ? pendingResult.result : null;
   const animOptions = getAnimationPool(card.type, card.activeFilters);
-  const isLocked = card.confirmed || card.sent;
+  const isLocked = card.confirmed;
   const displayMain = pending?.main ?? card.result.main;
 
   const [editing, setEditing] = useState(false);
@@ -70,7 +70,7 @@ export const MealCard = ({
 
   return (
     <div
-      className={`${styles.card} ${card.confirmed ? styles.confirmed : ""} ${card.sent ? styles.sent : ""}`}
+      className={`${styles.card} ${card.confirmed ? styles.confirmed : ""}`}
     >
       <div className={styles.header}>
         <span className={styles.icon}>{meta.icon}</span>
