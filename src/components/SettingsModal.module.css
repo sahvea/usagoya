@@ -211,7 +211,6 @@
   cursor: pointer;
   color: var(--color-text-muted);
   flex-shrink: 0;
-  font-size: 11px;
   transition:
     color 0.12s,
     border-color 0.12s;
