@@ -9,6 +9,7 @@ interface Props {
   onToggleCollapsed: () => void;
   collapsed: boolean;
   generating: boolean;
+  sending: boolean;
   hasResults: boolean;
 }
 
@@ -21,6 +22,7 @@ export const Header = ({
   onToggleCollapsed,
   collapsed,
   generating,
+  sending,
   hasResults,
 }: Props) => {
   return (
@@ -60,7 +62,7 @@ export const Header = ({
           <button
             className={styles.sendAllBtn}
             onClick={onSendAll}
-            disabled={generating}
+            disabled={generating || sending}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

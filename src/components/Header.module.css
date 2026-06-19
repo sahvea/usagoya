@@ -36,7 +36,9 @@
   padding: 4px 10px;
   border: 1.5px solid var(--color-border);
   border-radius: 8px;
-  transition: color 0.12s, border-color 0.12s;
+  transition:
+    color 0.12s,
+    border-color 0.12s;
   white-space: nowrap;
 }
 

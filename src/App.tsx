@@ -23,6 +23,7 @@ const App = () => {
   >({});
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [sending, setSending] = useState(false);
 
   const anyAnimating = state.cards.some((c) => c.animating);
   const hasResults = state.cards.some((c) => c.result.main);
@@ -118,12 +119,15 @@ const App = () => {
     }
     const active = state.cards.filter((c) => c.result.main);
     if (active.length === 0) return;
+    setSending(true);
     try {
       await sendAll(active, state.date, state.telegramConfig);
       active.forEach((c) => dispatch({ type: "MARK_SENT", cardId: c.id }));
       showSuccess("Меню отправлено в Telegram");
     } catch (e) {
       showError((e as Error).message);
+    } finally {
+      setSending(false);
     }
   };
 
@@ -143,6 +147,7 @@ const App = () => {
           onToggleCollapsed={() => setCollapsed((v) => !v)}
           collapsed={collapsed}
           generating={anyAnimating}
+          sending={sending}
           hasResults={hasResults}
         />
 
