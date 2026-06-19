@@ -112,7 +112,7 @@ const App = () => {
   };
 
   const handleSendAll = async () => {
-    if (!state.telegramConfig.token || !state.telegramConfig.chatId) {
+    if (!state.telegramConfig.token || state.telegramConfig.chatIds.length === 0) {
       setShowSettings(true);
       return;
     }

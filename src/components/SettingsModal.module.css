@@ -39,9 +39,11 @@
   cursor: pointer;
   font-size: 16px;
   color: var(--color-text-muted);
-  padding: 4px;
+  padding: 4px 6px;
   border-radius: 6px;
-  transition: color 0.12s, background 0.12s;
+  transition:
+    color 0.12s,
+    background 0.12s;
 }
 
 .close:hover {
@@ -67,7 +69,9 @@
   background: none;
   border-bottom: 2px solid transparent;
   margin-bottom: -1.5px;
-  transition: color 0.12s, border-color 0.12s;
+  transition:
+    color 0.12s,
+    border-color 0.12s;
 }
 
 .tab:hover {
@@ -89,7 +93,7 @@
 .hint {
   font-size: 13px;
   color: var(--color-text-muted);
-  margin: 0 0 16px;
+  margin: 0 0 8px;
   line-height: 1.5;
 }
 
@@ -131,6 +135,12 @@
 
 .input:focus {
   border-color: var(--color-accent);
+}
+
+.chatIdList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .mealEditor {
@@ -202,7 +212,9 @@
   color: var(--color-text-muted);
   flex-shrink: 0;
   font-size: 11px;
-  transition: color 0.12s, border-color 0.12s;
+  transition:
+    color 0.12s,
+    border-color 0.12s;
 }
 
 .delBtn:hover {
@@ -222,7 +234,9 @@
   cursor: pointer;
   font-size: 13px;
   margin-top: 2px;
-  transition: color 0.12s, border-color 0.12s;
+  transition:
+    color 0.12s,
+    border-color 0.12s;
 }
 
 .addBtn:hover {

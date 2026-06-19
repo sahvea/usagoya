@@ -34,10 +34,17 @@ export const saveTelegramConfig = (config: TelegramConfig): void => {
 export const loadTelegramConfig = (): TelegramConfig => {
   try {
     const raw = localStorage.getItem(TG_KEY);
-    if (!raw) return { token: "", chatId: "" };
-    return JSON.parse(raw) as TelegramConfig;
+    if (!raw) return { token: "", chatIds: [] };
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    if (typeof parsed.chatId === "string") {
+      return {
+        token: String(parsed.token ?? ""),
+        chatIds: parsed.chatId ? [parsed.chatId] : [],
+      };
+    }
+    return parsed as unknown as TelegramConfig;
   } catch {
-    return { token: "", chatId: "" };
+    return { token: "", chatIds: [] };
   }
 };
 

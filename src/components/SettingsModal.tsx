@@ -17,7 +17,7 @@ type Tab = "telegram" | "meals";
 export const SettingsModal = ({ config, onSave, onClose }: Props) => {
   const [tab, setTab] = useState<Tab>("telegram");
   const [token, setToken] = useState(config.token);
-  const [chatId, setChatId] = useState(config.chatId);
+  const [chatIds, setChatIds] = useState<string[]>(config.chatIds);
   const [mealFlat, setMealFlat] = useState<MealFlat>(() =>
     flattenMeals(loadCustomMeals() ?? defaultMeals),
   );
@@ -32,7 +32,10 @@ export const SettingsModal = ({ config, onSave, onClose }: Props) => {
   }, [mealFlat]);
 
   const handleSave = () => {
-    onSave({ token: token.trim(), chatId: chatId.trim() });
+    onSave({
+      token: token.trim(),
+      chatIds: chatIds.map((id) => id.trim()).filter(Boolean),
+    });
     saveCustomMeals(unflattenMeals(mealFlat));
     onClose();
   };
@@ -103,7 +106,8 @@ export const SettingsModal = ({ config, onSave, onClose }: Props) => {
                 >
                   @BotFather
                 </a>
-                , получите токен. Chat ID можно узнать у{" "}
+                , получите токен. Chat ID пользователя, группы или канала можно
+                узнать у{" "}
                 <a
                   href="https://t.me/userinfobot"
                   target="_blank"
@@ -113,6 +117,14 @@ export const SettingsModal = ({ config, onSave, onClose }: Props) => {
                   @userinfobot
                 </a>
                 .
+              </p>
+              <p className={styles.hint}>
+                <strong>Личный чат:</strong> пользователь должен написать боту
+                любое сообщение.
+              </p>
+              <p className={styles.hint}>
+                <strong>Группа или канал:</strong> добавьте бота в группу как
+                участника или в канал как администратора.
               </p>
               <div className={styles.field}>
                 <label className={styles.label}>Bot Token</label>
@@ -128,15 +140,40 @@ export const SettingsModal = ({ config, onSave, onClose }: Props) => {
               </div>
               <div className={styles.field}>
                 <label className={styles.label}>Chat ID</label>
-                <input
-                  className={styles.input}
-                  type="text"
-                  name="chat-id"
-                  placeholder="-100123456789"
-                  value={chatId}
-                  onChange={(e) => setChatId(e.target.value)}
-                  autoComplete="off"
-                />
+                <div className={styles.chatIdList}>
+                  {chatIds.map((id, i) => (
+                    <div key={i} className={styles.listItem}>
+                      <input
+                        className={styles.itemInput}
+                        type="text"
+                        name="chat-id"
+                        placeholder="-100123456789"
+                        value={id}
+                        onChange={(e) =>
+                          setChatIds((prev) =>
+                            prev.map((x, j) => (j === i ? e.target.value : x)),
+                          )
+                        }
+                        autoComplete="off"
+                      />
+                      <button
+                        className={styles.delBtn}
+                        onClick={() =>
+                          setChatIds((prev) => prev.filter((_, j) => j !== i))
+                        }
+                        aria-label="Удалить"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  ))}
+                  <button
+                    className={styles.addBtn}
+                    onClick={() => setChatIds((prev) => [...prev, ""])}
+                  >
+                    + Добавить Chat ID
+                  </button>
+                </div>
               </div>
             </>
           )}
@@ -159,6 +196,7 @@ export const SettingsModal = ({ config, onSave, onClose }: Props) => {
                               ref={(el) => {
                                 inputRefs.current[`${cat.key}-${i}`] = el;
                               }}
+                              name="meal"
                               className={styles.itemInput}
                               value={item}
                               onChange={(e) =>

@@ -36,7 +36,7 @@ export interface Card {
 
 export interface TelegramConfig {
   token: string;
-  chatId: string;
+  chatIds: string[];
 }
 
 export interface AppState {

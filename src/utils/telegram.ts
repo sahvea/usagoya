@@ -35,19 +35,18 @@ const formatAllMessage = (cards: Card[], date: string): string => {
   return header + "\n" + lines.join("\n") + footer;
 };
 
-const send = async (config: TelegramConfig, text: string): Promise<void> => {
-  if (!config.token || !config.chatId) {
-    throw new Error(
-      "Telegram не настроен. Нужно добавить токен бота и Chat ID.",
-    );
-  }
+const sendToChat = async (
+  token: string,
+  chatId: string,
+  text: string,
+): Promise<void> => {
   const res = await fetch(
-    `https://api.telegram.org/bot${config.token}/sendMessage`,
+    `https://api.telegram.org/bot${token}/sendMessage`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        chat_id: config.chatId,
+        chat_id: chatId,
         text,
         parse_mode: "HTML",
         link_preview_options: { is_disabled: true },
@@ -67,5 +66,11 @@ export const sendAll = async (
   date: string,
   config: TelegramConfig,
 ): Promise<void> => {
-  await send(config, formatAllMessage(cards, date));
+  if (!config.token || config.chatIds.length === 0) {
+    throw new Error("Telegram не настроен. Нужно добавить токен бота и Chat ID.");
+  }
+  const text = formatAllMessage(cards, date);
+  for (const chatId of config.chatIds) {
+    await sendToChat(config.token, chatId, text);
+  }
 };
