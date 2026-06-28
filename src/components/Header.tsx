@@ -32,14 +32,14 @@ export const Header = ({
           <span className={styles.logo}>🥕</span>
           <span className={styles.name}>Usagoya</span>
         </div>
-        <a
+        {/* <a
           href="https://t.me/usagoya"
           target="_blank"
           rel="noreferrer"
           className={styles.donateBtn}
         >
           🥕 Поддержать
-        </a>
+        </a> */}
       </div>
 
       <div className={styles.controls}>
